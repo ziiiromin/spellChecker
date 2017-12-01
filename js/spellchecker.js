@@ -6,7 +6,8 @@ var spell = (function($) {
 
             this.input = $(args.textarea);
             this.btn = $(args.submitBtn);
-            this.result = $(args.resultarea);
+            this.resultarea = $(args.resultarea);
+            this.correctSentences = [];
 
             this._callback = args.callback;
         }
@@ -35,6 +36,8 @@ var spell = (function($) {
     };
 
     spell.prototype.spellCheck = function (text) {
+        this.initResult();
+
         if(text === "" || typeof text == "undefined") {
             alert("내용이 없습니다.");
             return;
@@ -61,10 +64,11 @@ var spell = (function($) {
         var wrong_sentences_count = data.message.result.errata_count;
         var result = data.message.result.html;
 
-        if(!!this.result) {
-            this.result.html(result);
-        }
+        this.setResult(result);
 
+        if(!!this.resultarea) {
+            this.resultarea.html(result);
+        }
     };
 
     spell.prototype.setCallback = function(callback) {
@@ -77,6 +81,18 @@ var spell = (function($) {
         this.callback = this.originCallback;
     };
 
+    spell.prototype.initResult = function() {
+        this.correctSentences = [];
+    }
+
+    spell.prototype.setResult = function(sentence) {
+        return this.correctSentences.push(sentence);
+    }
+
+    spell.prototype.getResult = function() {
+        return this.correctSentences.join(" ");
+    };
+
     spell.prototype.init = function() {
         this.bindEvent();
     };
@@ -84,4 +100,3 @@ var spell = (function($) {
     return spell;
 
 })(jQuery);
-
