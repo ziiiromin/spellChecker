@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="manifest" href="site.webmanifest">
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div class="row">
+                <textarea id="textarea" class="form-control" rows="10"></textarea>
+            </div>
+
+            <br/><br/>
+
+            <div class="row">
+                <div class="offset-sm-5 col-sm-3 offset-md-5 col-md-3 offset-lg-5 col-lg-3">
+                    <button type="button" id="submitBtn" class="btn btn-success btn-lg">검사</button>
+                    <button type="button" id="copyBtn" class="btn btn-info btn-lg" data-clipboard-target="#result">결과복사</button>
+                </div>
+            </div>
+
+            <br/><br/>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12" style="background-color: lightgray; min-height: 300px; max-height: 600px; overflow-y: scroll;-webkit-border-radius: ;-moz-border-radius: ;border-radius: 5px; padding: 10px;">
+                    <div id="result"></div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <script>
+            var options = {
+                "textarea": document.getElementById("textarea"),
+                "submitBtn": document.getElementById("submitBtn"),
+                "copyBtn": document.getElementById("copyBtn"),
+                "resultarea": document.getElementById("result"),
+                //"callback": function(data) {
+                //console.log(data);
+                //}
+            };
+            var spell = new spell(options);
+            spell.init();
+
+
+            var clipboard = new Clipboard('#copyBtn');
+
+            clipboard.on('success', function(e) {
+                //console.info('Action:', e.action);
+                //console.info('Text:', e.text);
+                //console.info('Trigger:', e.trigger);
+                alert("복사되었습니다.");
+
+                e.clearSelection();
+            });
+
+            clipboard.on('error', function(e) {
+                //console.error('Action:', e.action);
+                //console.error('Trigger:', e.trigger);
+            });
+        </script>
+    </body>
+</html>
