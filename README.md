@@ -1,7 +1,7 @@
 # spellChecker
 맞춤법 검사기 JS 라이브러리 입니다.
 
-![예제](./img/index.png)
+![](./img/index.jpg)
 
 ### 필요한 파일
 ```
@@ -51,5 +51,5 @@ var text = "아녕하세요";
 var result;
 
 spell.spellCheck(text);
-result = spell.getResult(); // 안녕하세요
+result = spell.getResult(); // "<span class='re_red'>안녕하세요</span>"
 ```
