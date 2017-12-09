@@ -53,3 +53,6 @@ var result;
 spell.spellCheck(text);
 result = spell.getResult(); // "<span class='re_red'>안녕하세요</span>"
 ```
+
+##### Test URL
+[Link](https://cdn.rawgit.com/writer0713/spellChecker/7c4be1cf/index.html)
